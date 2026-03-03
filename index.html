@@ -1228,5 +1228,15 @@ function rGoalie(){
 }
 renderAll();
 </script>
+
+<script>
+// ツールで記録中の場合、離脱前に警告
+window.addEventListener('beforeunload', e => {
+  const keys = ['kul_score','kul_to','kul_possession','kul_draw','kul_gb_foul','kul_goalie'];
+  if (keys.some(k => localStorage.getItem(k))) {
+    e.preventDefault(); e.returnValue = '';
+  }
+});
+</script>
 </body>
 </html>
